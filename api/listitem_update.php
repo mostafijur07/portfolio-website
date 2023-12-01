@@ -10,24 +10,19 @@
         exit;
     }
 
-    $listName = $_POST['listname'];
+    $itemName = $_POST['itemname'];
+    $newItemStatus =$_POST['newitemstatus'];
 
-    $sql = "DELETE FROM listitems WHERE listname = '$listName'";
+    $sql = "UPDATE listitems SET itemstatus = '$newItemStatus' WHERE listitem = '$itemName'";
     $result = mysqli_query($conn, $sql);
     if(!$result){
         echo "Error: ".mysqli_error($conn);
         exit;
     }
 
-    $sql = "DELETE FROM listnames WHERE listname = '$listName'";
-    $result = mysqli_query($conn, $sql);
-    if(!$result){
-        echo "Error: ".mysqli_error($conn);
-        exit;
-    }
-
-    echo "list delete successfully";
+    echo "update sucessfull";
 
     mysqli_close($conn);
 ?>
-    
+
+

@@ -64,6 +64,7 @@ createButton.addEventListener('click', () => {
 
         const htmlData = `<button id="create-close-button"><i class="fas fa-times"></i></button>
                         <h1>Select List Name</h1>
+                        <br/>
                         <form>
                             <select name="listname">
                                 <option value="A_CODING">CODING</OPTION>
@@ -112,6 +113,7 @@ createButton.addEventListener('click', () => {
     }
 })
 
+
 window.addEventListener('DOMContentLoaded', () => {
     const allListCardRequest = new XMLHttpRequest();
     allListCardRequest.onreadystatechange = getAjaxFunction;
@@ -132,26 +134,30 @@ window.addEventListener('DOMContentLoaded', () => {
 
 document.addEventListener('click', (event) => {
     if (event.target.id === 'delete-button') {
-        const listCard = event.target.closest('.list-card');
-        const h1Element = listCard.querySelector('h1');
-        const listname = h1Element.innerHTML;
+        if(flag){
+            flag=false;
+            const listCard = event.target.closest('.list-card');
+            const h1Element = listCard.querySelector('h1');
+            const listname = h1Element.innerHTML;
         
-        if (confirm(`Are you sure you want to delete the list "${listname}"?`)) {
-            listCard.remove();
-            const deleteListCardRequest = new XMLHttpRequest();
-            deleteListCardRequest.onreadystatechange = postListDeleteAjaxFunction;
-            deleteListCardRequest.open('POST', 'api/listdelete.php');
-            deleteListCardRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            deleteListCardRequest.send('listname=' + listname);
+            if (confirm(`Are you sure you want to delete the list "${listname}"?`)) {
+                listCard.remove();
+                const deleteListCardRequest = new XMLHttpRequest();
+                deleteListCardRequest.onreadystatechange = postListDeleteAjaxFunction;
+                deleteListCardRequest.open('POST', 'api/listdelete.php');
+                deleteListCardRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                deleteListCardRequest.send('listname=' + listname);
 
-            function postListDeleteAjaxFunction () {
-                if(deleteListCardRequest.readyState===XMLHttpRequest.DONE){
-                    if(deleteListCardRequest.status === 200){
-                        const response = deleteListCardRequest.responseText;
-                        alert(response);
+                function postListDeleteAjaxFunction () {
+                    if(deleteListCardRequest.readyState===XMLHttpRequest.DONE){
+                        if(deleteListCardRequest.status === 200){
+                            const response = deleteListCardRequest.responseText;
+                            alert(response);
+                        }
                     }
                 }
             }
+            flag=true;
         }
     }else if(event.target.id === 'add-button'){
         if(flag){
@@ -165,7 +171,7 @@ document.addEventListener('click', (event) => {
                             <br/>           
                             <form id="list-form">
                                 <textarea name="list-item" maxlength="20"></textarea>
-                                <br/><br/>
+                                <br/>
                                 <input type="radio" name="status" value="complete"> complete
                                 <input type="radio" name="status" value="incomplete"> incomplete
                                 <br/>
@@ -219,6 +225,99 @@ document.addEventListener('click', (event) => {
                 }
             }
         })
+        }
+    } else if(event.target.classList.contains('c-list-item-card') || event.target.classList.contains('in-list-item-card')){
+        if(flag){
+            flag=false;
+            const fullScreen = document.querySelector('.fullscreen');
+            const listItemPopupCard = document.createElement('div');
+            listItemPopupCard.classList.add('listitem-popup-card');
+
+            const htmlData = `<button id="listitem-close-button"><i class="fas fa-times"></i></button>
+                            <h1>Change Status</h1>  
+                            <br/>           
+                            <button id="listitem-changestatus-button">change</button>
+                            <br/>
+                            <h1>Delete item</h1>
+                            <br/>
+                            <button id="listitem-delete-button">delete</button>`
+
+            listItemPopupCard.insertAdjacentHTML('afterbegin', htmlData);
+            fullScreen.appendChild(listItemPopupCard);
+
+            listItemPopupCard.style.display = "flex";
+
+            const closeButton = listItemPopupCard.querySelector('#listitem-close-button');
+            closeButton.addEventListener('click', () => {
+                listItemPopupCard.style.display = "none";
+                flag=true;
+            });
+
+            const changestatusButton = listItemPopupCard.querySelector('#listitem-changestatus-button');
+            changestatusButton.addEventListener('click', () => {
+                const listCard = event.target.closest('.list-card');
+                let listitem, itemName, newItemStatus;
+                if(event.target.classList.contains('c-list-item-card')){
+                    listitem = event.target.closest('.c-list-item-card');
+                    itemName = event.target.innerHTML;
+                    newItemStatus = 'incomplete';
+                }else{
+                    listitem = event.target.closest('.in-list-item-card');
+                    itemName = event.target.innerHTML;
+                    newItemStatus = 'complete';
+                }
+
+                listItemPopupCard.style.display = "none";
+                flag=true;
+
+                const updateListItemRequest = new XMLHttpRequest();
+                updateListItemRequest.onreadystatechange = postUpdateListItemAjaxFunction;
+                updateListItemRequest.open('POST', 'api/listitem_update.php');
+                updateListItemRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                updateListItemRequest.send('itemname=' + itemName + '&newitemstatus=' + newItemStatus);
+            
+                function postUpdateListItemAjaxFunction () {
+                    if(updateListItemRequest.readyState===XMLHttpRequest.DONE){
+                        if(updateListItemRequest.status === 200){
+                            const response = updateListItemRequest.responseText;
+                            listitem.remove();
+                            alert(response);
+                            addListItem(listCard,itemName,newItemStatus);
+                        }
+                    }
+                }
+            })
+
+            const listitemDeleteButton = listItemPopupCard.querySelector('#listitem-delete-button');
+            listitemDeleteButton.addEventListener('click', () => {
+                let listitem, itemName;
+                if(event.target.classList.contains('c-list-item-card')){
+                    listitem = event.target.closest('.c-list-item-card');
+                    itemName = event.target.innerHTML;
+                }else{
+                    listitem = event.target.closest('.in-list-item-card');
+                    itemName = event.target.innerHTML;
+                }
+
+                listItemPopupCard.style.display = "none";
+                flag=true;
+
+                const deleteListItemRequest = new XMLHttpRequest();
+                deleteListItemRequest.onreadystatechange = postDeleteListItemAjaxFunction;
+                deleteListItemRequest.open('POST', 'api/listitem_delete.php');
+                deleteListItemRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                deleteListItemRequest.send('itemname=' + itemName);
+            
+                function postDeleteListItemAjaxFunction () {
+                    if(deleteListItemRequest.readyState===XMLHttpRequest.DONE){
+                        if(deleteListItemRequest.status === 200){
+                            const response = deleteListItemRequest.responseText;
+                            listitem.remove();
+                            alert(response);
+                        }
+                    }
+                }
+            })
         }
     }
 });
