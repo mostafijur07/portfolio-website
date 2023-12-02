@@ -48,9 +48,9 @@
 .create-popup-card{
     position: fixed;
     top: 50px;
-    left: 40%;
+    left: 35%;
     height: 200px;
-    width: 20%;
+    width: auto;
     /* border: solid 2px red; */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     background-color: #fffcf7;
@@ -78,7 +78,7 @@
 
 .create-popup-card select{
     position: relative;
-    left: 20px;
+    margin-left: 20px;
     font-size: 20px;
 }
 
@@ -231,4 +231,3 @@ input[type="radio"] {
     left: 35%;
     font-size: 20px;
 }
-
