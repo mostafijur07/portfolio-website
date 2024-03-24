@@ -28,9 +28,9 @@
 
 #create-button{
     position: relative;
-    right: 5%;
+    margin: 0px 20px 0px 0px;
     height: 50%;
-    width: 10%;
+    width: auto;
     font-size: 20px;
     background-color: yellow;
 }
@@ -85,7 +85,7 @@
 .list-card{
     position: relative;
     margin-top: 50px;
-    height: 300px;
+    min-height: 300px;
     width: 90%;
     border: solid 2px black;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
@@ -96,24 +96,25 @@
 
 .list-header{
     position: relative;
-    height: 10%;
+    min-height: 35px;
     width: 100%;
     /* border: solid 2px red; */
-    display: flex; 
+    display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 h1{
     font-size: 20px;
     position: relative;
-    left: 20px;
+    margin: 5px 20px 5px 20px;
 }
 
 .button-container{
     position: relative;
     height: 100%;
-    width: 20%;
+    width: auto;
     /* border: solid 2px red; */
     display: flex;
     align-items: center;
@@ -123,15 +124,20 @@ h1{
 #add-button, #delete-button{
     position: relative;
     height: 100%;
-    width: 50%;
+    width: auto;
+    margin: 2px 2px 2px 20px;
     font-size: 20px;
+}
+
+#delete-button{
+    margin: 2px;
 }
 
 .complete-list, .incomplete-list{
     position: relative;
-    height: 35%;
+    min-height: 110px;
     width: 90%;
-    margin-top: 1%;
+    margin: 5px;
     border: solid 2px black;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     display: flex;
@@ -187,10 +193,9 @@ input[type="radio"] {
 
 .c-list-item-card, .in-list-item-card{
     position: relative;
-    height: 35%;
+    height: 30px;
     width: auto;
-    margin-top: 1%;
-    margin-left: 1%;
+    margin: 5px;
     border: solid 2px black;
     background-color: #15ed15;
     padding: 2px 2px 2px 2px;
@@ -231,3 +236,4 @@ input[type="radio"] {
     left: 35%;
     font-size: 20px;
 }
+

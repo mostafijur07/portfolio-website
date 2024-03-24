@@ -10,7 +10,7 @@
         exit;
     }
 
-    $sql = "SELECT listname FROM listnames ORDER BY listname ASC";
+    $sql = "SELECT listname FROM listnames ORDER BY id ASC";
     $result = mysqli_query($conn, $sql);
     if(!$result){
         echo "Error: ".mysqli_error($conn);

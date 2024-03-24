@@ -68,10 +68,11 @@ createButton.addEventListener('click', () => {
                         <br/>
                         <form>
                             <select name="listname">
-                                <option value="A_PROBLEM SOLVING">PROBLEM SOLVING</OPTION>
-                                <option value="B_PROGRAMMING LANGUAGE & DSA & DAA">PROGRAMMING LANGUAGE & DSA & DAA</OPTION>
-                                <option value="C_WEB DEVELOPMENT">WEB DEVELOPMENT</OPTION>
-                                <option value="D_M.E 1ST SEM">M.E 1ST SEM</OPTION>
+                                <option value="PROBLEM SOLVING AND DSA AND DAA">PROBLEM SOLVING AND DSA AND DAA</OPTION>
+                                <option value="PROGRAMMING LANGUAGE">PROGRAMMING LANGUAGE</OPTION>
+                                <option value="WEB DEVELOPMENT">WEB DEVELOPMENT</OPTION>
+                                <option value="M.E COURSE">M.E COURSE</OPTION>
+                                <option value="CURRENT WORK">CURRENT WORK</OPTION>
                             </select>
                         </form>
                         <button id="create-submit-button">submit</button>`
@@ -109,7 +110,7 @@ createButton.addEventListener('click', () => {
                     if(addNewListCardRequest.status === 200){
                         const response = addNewListCardRequest.responseText;
                         if(response === 'list already selected'){
-                            alert('list already selected');
+                            alert('list already created');
                         }else{
                             addListCard(listName);  //display the list card.
                         }
@@ -184,7 +185,7 @@ document.addEventListener('click', (event) => {
                             <h1>Select Name</h1>  
                             <br/>           
                             <form id="list-form">
-                                <textarea name="list-item" maxlength="20"></textarea>
+                                <textarea name="list-item" maxlength="40"></textarea>
                                 <br/>
                                 <input type="radio" name="status" value="complete"> complete
                                 <input type="radio" name="status" value="incomplete"> incomplete
@@ -236,7 +237,7 @@ document.addEventListener('click', (event) => {
                             if(response === 'Item already exist'){
                                 alert('Item already exist');
                             }else{
-                                alert('Item added sucessfully');
+                                // alert('Item added sucessfully');
                                 addListItem(listCard,trimListItem,itemStatus);
                             }
                         }
@@ -303,7 +304,7 @@ document.addEventListener('click', (event) => {
                         if(updateListItemRequest.status === 200){
                             const response = updateListItemRequest.responseText;
                             listitem.remove();
-                            alert(response);
+                            // alert(response);
                             addListItem(listCard,itemName,newItemStatus);
                         }
                     }
@@ -339,7 +340,7 @@ document.addEventListener('click', (event) => {
                         if(deleteListItemRequest.status === 200){
                             const response = deleteListItemRequest.responseText;
                             listitem.remove();
-                            alert(response);
+                            // alert(response);
                         }
                     }
                 }

@@ -2,7 +2,7 @@
     $db_hostname = "127.0.0.1";
     $db_username = "root";
     $db_password = "";
-    $db_name = "mr_task";
+    $db_name = "roadmap";
 
     $conn = mysqli_connect($db_hostname, $db_username,$db_password,$db_name);
     if(!$conn){
@@ -10,23 +10,20 @@
         exit;
     }
 
-    $listName = $_GET['listname'];
+    $cardname = $_GET['cardName'];
 
-    $sql = "SELECT listitem, itemstatus FROM listitems WHERE listname='$listName' ORDER BY id ASC";
+    $sql = "SELECT card_item FROM carditem WHERE card_heading='$cardname'";
     $result = mysqli_query($conn, $sql);
     if(!$result){
         echo "Error: ".mysqli_error($conn);
         exit;
     }
 
-    $listItemData = [];
+    $cardItems = [];
     while ($row = mysqli_fetch_assoc($result)) {
-        $listItemData[] = [
-            'listitem' => $row['listitem'],
-            'itemstatus' => $row['itemstatus']
-        ];
+        $cardItems[] = $row['card_item'];
     }
 
-    echo json_encode($listItemData);
+    echo json_encode($cardItems);
     mysqli_close($conn);
 ?>

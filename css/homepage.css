@@ -1,0 +1,59 @@
+
+*{
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+.header{
+    height: 60px;
+    position: relative;
+    border: solid 2px black;
+    display: flex;
+}
+
+.header-content{
+    width: auto;
+    margin-left: 10px;
+    margin-right: 10px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.header-content a{
+    align-items: center;
+    justify-content: center;
+}
+
+.description{
+    height: 500px;
+    border: solid 2px blue;
+}
+
+.my-name{
+    position: relative;
+    top: 40px;
+    left: 100px;
+    font-size: 50px;
+}
+
+.my-details{
+    position: relative;
+    top: 80px;
+    left: 400px;
+}
+
+.my-img{
+    position: relative;
+    top: 80px;
+    left: 600px;
+}
+
+.my-img img{
+    height: 350px;
+    width: 350px;
+}
+
+
+
+
