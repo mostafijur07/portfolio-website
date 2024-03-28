@@ -9,15 +9,33 @@
     position: relative;
     border: solid 2px black;
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-content-links, .header-content-logo{
+    display: flex;
 }
 
 .header-content{
     width: auto;
-    margin-left: 10px;
+    margin-left: 20px;
     margin-right: 10px;
     align-items: center;
     justify-content: center;
     display: flex;
+}
+
+#three-line-logo{
+    height: 30px;
+    width: 30px;
+    margin-right: 50px;
+    border-radius: 10%;
+    box-shadow: 0px 0px 15px 0px rgb(209, 208, 208);
+}
+
+#three-line-logo:hover{
+    box-shadow: 0px 0px 15px 0px rgb(127, 126, 126);
 }
 
 .header-content a{
@@ -26,33 +44,59 @@
 }
 
 .description{
-    height: 500px;
+    height: 550px;
     border: solid 2px blue;
+    position: relative;
 }
 
 .my-name{
     position: relative;
-    top: 40px;
+    margin-top: 40px;
     left: 100px;
     font-size: 50px;
 }
 
 .my-details{
     position: relative;
-    top: 80px;
-    left: 400px;
+    margin-top: 30px;
+    left: 300px;
 }
 
 .my-img{
-    position: relative;
-    top: 80px;
-    left: 600px;
+    height: 250px;
+    position: fixed;
+    top: 200px;
+    left: 700px;
+    border: 5px solid black;
+    border-radius: 50%;
+    overflow: hidden;
 }
 
 .my-img img{
-    height: 350px;
-    width: 350px;
+    height: 250px;
+    width: 250px;
 }
+
+.footer-content{
+    height: 110px;
+    position: relative;
+    border: 2px solid green;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+#linkedin-img{
+    height: 20px;
+    width: 60px;
+}
+
+#github-img{
+    height: 20px;
+    width: 20px;
+}
+
+
 
 
 
