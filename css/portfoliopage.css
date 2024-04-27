@@ -12,7 +12,7 @@
 
 .header-img-container{
     position: relative;
-    width: 400px;
+    width: 20%;
     height: 100%;
     display: flex;
     align-items: center;
@@ -29,7 +29,53 @@
 
 .description{
     position: relative;
+    width: 60%;
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+
+.id_links{
+    position: relative;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+#linkedin, #github, #email{
+    position: relative;
+    margin-top: 10px;
+    height: 20px;
+    color: black;
+    text-decoration: none;
+    display: flex;
+}
+
+#gmail_img, #linkedin_img, #github_img{
+    margin-right: 10px;
+    height: 20px;
+    width: 20px;
+    border-radius: 25%;
+}
+
+.education_details{
+    position: relative;
+    height: 300px;
+    display: flex;
+    justify-content: space-evenly;
+    background-image: url('header-bck-img.png');
+}
+
+.mcse, .bcse, .hse, .se{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#ju_logo, #makaut_logo{
+    height: 60px;
+    width: 60px;
 }
